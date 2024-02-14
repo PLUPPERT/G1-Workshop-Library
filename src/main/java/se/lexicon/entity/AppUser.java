@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -20,8 +21,15 @@ public class AppUser {
     @Column(unique = true)
     private String username;
     private String password;
-    private LocalDate regdate;
+    private LocalDate regDate;
     @OneToOne
     @JoinColumn(name = "details_id")
-    private Details details;
+    private Details userDetails;
+
+    public AppUser(String username, String password, LocalDate regDate, Details userDetails) {
+        this.username = username;
+        this.password = password;
+        this.regDate = regDate;
+        this.userDetails = userDetails;
+    }
 }

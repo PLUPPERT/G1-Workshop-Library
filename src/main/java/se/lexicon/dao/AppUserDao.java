@@ -9,4 +9,5 @@ public interface AppUserDao {
     Collection<AppUser> findAll();
     AppUser create(AppUser appUser);
     void delete(AppUser appUser);
+    AppUser update(AppUser appUser);
 }
