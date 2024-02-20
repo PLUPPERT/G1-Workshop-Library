@@ -15,29 +15,32 @@ public class BookDaoRepository implements BookDao {
     private EntityManager entityManager;
     @Override
     public Book findById(int id) {
-        return null;
+        return entityManager.find(Book.class, id);
     }
 
     @Override
     public Collection<Book> findAll() {
-        return null;
+        return entityManager.createQuery("SELECT b FROM Book b", Book.class)
+                .getResultList();
     }
 
     @Override
     @Transactional
     public Book create(Book book) {
-        return null;
+        entityManager.persist(book);
+        return book;
     }
 
     @Override
     @Transactional
     public Book update(Book book) {
-        return null;
+        return entityManager.merge(book);
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-
+        Book bookToDelete = findById(id);
+        entityManager.remove(bookToDelete);
     }
 }

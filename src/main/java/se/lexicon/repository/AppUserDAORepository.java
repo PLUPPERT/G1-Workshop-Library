@@ -46,4 +46,5 @@ public class AppUserDAORepository implements AppUserDao {
         entityManager.merge(appUser);
         return appUser;
     }
+
 }
