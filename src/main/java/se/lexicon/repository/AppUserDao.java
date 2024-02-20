@@ -1,4 +1,4 @@
-package se.lexicon.dao;
+package se.lexicon.repository;
 
 import se.lexicon.entity.AppUser;
 

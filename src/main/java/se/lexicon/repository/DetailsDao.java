@@ -1,6 +1,5 @@
-package se.lexicon.dao;
+package se.lexicon.repository;
 
-import se.lexicon.entity.AppUser;
 import se.lexicon.entity.Details;
 
 import java.util.Collection;

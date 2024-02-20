@@ -1,4 +1,4 @@
-package se.lexicon.dao;
+package se.lexicon.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
