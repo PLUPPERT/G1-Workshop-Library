@@ -6,10 +6,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "password")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -20,9 +19,10 @@ public class AppUser {
     private int appUserId;
     @Column(unique = true)
     private String username;
+    @Getter(AccessLevel.NONE)
     private String password;
     private LocalDate regDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "details_id")
     private Details userDetails;
 

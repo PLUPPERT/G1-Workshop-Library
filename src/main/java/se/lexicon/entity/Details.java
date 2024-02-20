@@ -5,6 +5,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,16 +14,12 @@ public class Details {
 
     @Id
     @Column(name = "details_id")
-    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private int detailsId;
-
-    @Setter
     @Column(unique = true)
     private String email;
-    @Setter
     private String name;
-    @Setter
     private LocalDate birthDate;
 
     public Details(String email, String name, LocalDate birthDate) {

@@ -6,24 +6,24 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import se.lexicon.entity.Details;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
-public class DetailsDAORepository implements DetailsDao{
+public class DetailsDAORepository implements DetailsDao {
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
     public Details findById(int id) {
-        Details details = entityManager.find(Details.class,id);
-        if (details == null) throw new RuntimeException("No details found for the "+id);
+        Details details = entityManager.find(Details.class, id);
+        if (details == null) throw new RuntimeException("No details found with id: " + id);
         return details;
     }
 
     @Override
     public Collection<Details> findAll() {
-        return entityManager.createQuery("SELECT d FROM Details d",Details.class)
-                            .getResultList();
+        return entityManager.createQuery("SELECT d FROM Details d", Details.class)
+                .getResultList();
     }
 
     @Override
