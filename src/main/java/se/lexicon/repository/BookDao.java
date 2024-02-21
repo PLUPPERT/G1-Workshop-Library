@@ -1,7 +1,6 @@
 package se.lexicon.repository;
 
 import se.lexicon.entity.Book;
-
 import java.util.Collection;
 
 public interface BookDao {

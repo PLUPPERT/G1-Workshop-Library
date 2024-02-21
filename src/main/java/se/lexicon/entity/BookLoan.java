@@ -16,19 +16,14 @@ public class BookLoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private int loanId;
-
     @Column(nullable = false)
     private LocalDate loanDate;
-
     @Column(nullable = false)
     private LocalDate dueDate;
-
     private boolean returned;
-
     @ManyToOne
     @JoinColumn(name = "app_user_id")
     private AppUser borrower;
-
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;

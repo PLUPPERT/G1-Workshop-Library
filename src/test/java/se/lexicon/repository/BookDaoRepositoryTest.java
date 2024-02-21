@@ -5,29 +5,27 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import se.lexicon.entity.Book;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
+@SpringBootTest
 class BookDaoRepositoryTest {
 
     @Autowired
-    private BookDao bookDaoRepository;
+    private BookDao bookDao;
     Book testBook;
     @BeforeEach
     void setUp() {
-        testBook = new Book("abcd1234-xyz","TestBook",15);
-        bookDaoRepository.create(testBook);
+        testBook = bookDao.create(new Book("abcd12345-xyz","TestBook",15));
     }
 
     @Test
     void findById() {
-
-        Book foundBook = bookDaoRepository.findById(testBook.getBookId());
-        Assertions.assertNotNull(foundBook);
-        Assertions.assertEquals(testBook.getTitle(),foundBook.getTitle());
+        Book foundBook = bookDao.findById(testBook.getBookId());
+        assertNotNull(foundBook);
+        assertEquals(testBook.getTitle(),foundBook.getTitle());
     }
 
     @Test
@@ -35,38 +33,41 @@ class BookDaoRepositoryTest {
         Book book1 = new Book("java123","Introduction to JAVA",15);
         Book book2 = new Book("python123","Introduction to Python",15);
 
-        bookDaoRepository.create(book1);
-        bookDaoRepository.create(book2);
+        bookDao.create(book1);
+        bookDao.create(book2);
 
-        int expectedNumOfBooks = 2;
-        int actualNumOfBooks = bookDaoRepository.findAll().size();
+        int expectedNumOfBooks = 3;
+        int actualNumOfBooks = bookDao.findAll().size();
 
-        Assertions.assertEquals(expectedNumOfBooks,actualNumOfBooks);
+        assertEquals(expectedNumOfBooks,actualNumOfBooks);
     }
 
     @Transactional
     @Test
     void create() {
-        Book createdBook = bookDaoRepository.create(testBook);
+        Book createdBook = bookDao.create(new Book("öbcd12345-xyz","Created Book",15));
+        int id = createdBook.getBookId();
 
-        Assertions.assertNotNull(createdBook.getBookId());
-        assertEquals(testBook.getTitle(),createdBook.getTitle());
-        assertEquals(testBook.getIsbn(),createdBook.getIsbn());
+        assertNotNull(createdBook);
+        assertEquals(createdBook.getTitle(),bookDao.findById(id).getTitle());
+        assertEquals(createdBook.getIsbn(),bookDao.findById(id).getIsbn());
     }
 
     @Transactional
     @Test
     void update() {
-        testBook.setTitle("Updated title");
-        Book updatedBook = bookDaoRepository.update(testBook);
+        String newTitle = "Updated title";
+        testBook.setTitle(newTitle);
+        Book updatedBook = bookDao.update(testBook);
 
-        Assertions.assertEquals(testBook.getTitle(),updatedBook.getTitle());
+        assertEquals(newTitle, updatedBook.getTitle());
     }
 
     @Transactional
     @Test
     void delete() {
-        bookDaoRepository.delete(testBook.getBookId());
-        assertNull(testBook);
+        int id = testBook.getBookId();
+        bookDao.delete(id);
+        assertNull(bookDao.findById(id));
     }
 }
