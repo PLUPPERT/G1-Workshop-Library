@@ -1,5 +1,6 @@
 package se.lexicon.repository;
 
+import org.springframework.stereotype.Repository;
 import se.lexicon.entity.AppUser;
 
 import java.util.Collection;
