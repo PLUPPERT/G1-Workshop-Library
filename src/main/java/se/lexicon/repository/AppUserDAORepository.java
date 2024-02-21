@@ -1,4 +1,4 @@
-package se.lexicon.repository;
+/*package se.lexicon.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -47,4 +47,4 @@ public class AppUserDAORepository implements AppUserDao {
         return appUser;
     }
 
-}
+}*/

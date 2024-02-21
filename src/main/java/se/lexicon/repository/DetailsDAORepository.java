@@ -1,3 +1,4 @@
+/*
 package se.lexicon.repository;
 
 import jakarta.persistence.EntityManager;
@@ -45,3 +46,4 @@ public class DetailsDAORepository implements DetailsDao {
         entityManager.remove(details);
     }
 }
+*/

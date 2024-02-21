@@ -1,3 +1,4 @@
+/*
 package se.lexicon.repository;
 
 import org.junit.jupiter.api.Assertions;
@@ -27,10 +28,12 @@ class AppUserDAORepositoryTest {
         user = new AppUser("Tester_no_1", "aslkjgfsdlkgfj3245P", LocalDate.now(), details);
     }
 
+*/
 /*    @AfterEach
     void tearDown() {
 
-    }*/
+    }*//*
+
 
     @Test
     void findById() {
@@ -90,3 +93,4 @@ class AppUserDAORepositoryTest {
         Assertions.assertEquals(expectedUserName, actualUserName);
     }
 }
+*/
