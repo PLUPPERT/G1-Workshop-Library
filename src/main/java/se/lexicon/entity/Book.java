@@ -25,6 +25,15 @@ public class Book {
     private int maxLoanDays;
     @ManyToMany(mappedBy = "writtenBooks")
     private Set<Author> authors = new HashSet<>();
+    private boolean available=true;
+
+    public void setUnavailable(){
+        this.available = false;
+    }
+
+    public void setAvailable() {
+        this.available = true;
+    }
 
     public Book(String isbn, String title, int maxLoanDays) {
         this.isbn = isbn;
@@ -39,16 +48,15 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
         this.authors = authors;
     }
-    @Transactional
     public void setAuthor(Author author) {
         authors.add(author);
         author.getWrittenBooks().add(this);
        //this.authors = authors;
        //author.(this);
 }
-@Transactional
    public void removeAuthor(Author author){
         authors.remove(author);
         author.getWrittenBooks().remove(this);
    }
+
 }

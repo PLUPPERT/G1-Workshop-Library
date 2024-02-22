@@ -37,9 +37,10 @@ public class AppUser {
         this.regDate = regDate;
         this.userDetails = userDetails;
     }
-    @Transactional
     public void addBookLoan(BookLoan bookLoan){
         loans.add(bookLoan);
         bookLoan.setBorrower(this);
+        bookLoan.getBook().setAvailable(false);
     }
+
 }

@@ -35,4 +35,12 @@ public class BookLoan {
         this.borrower = borrower;
         this.book = book;
     }
-}
+
+    public void calculateDueDate() {
+        if (book != null && loanDate != null) {
+            this.dueDate = loanDate.plusDays(book.getMaxLoanDays());
+        }
+
+            }
+        }
+    
