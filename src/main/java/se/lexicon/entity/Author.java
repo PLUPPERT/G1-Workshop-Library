@@ -1,6 +1,7 @@
 package se.lexicon.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.util.HashSet;
@@ -30,5 +31,15 @@ public class Author {
         this.firstName = firstName;
         this.lastName = lastName;
         this.writtenBooks = writtenBooks;
+    }
+
+    public void addBook(Book book) {
+        writtenBooks.add(book);
+        book.setAuthor(this);
+    }
+
+    public void removeBook(Book book) {
+        writtenBooks.remove(book);
+        book.setAuthor(null);
     }
 }

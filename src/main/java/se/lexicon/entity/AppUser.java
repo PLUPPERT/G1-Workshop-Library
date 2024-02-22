@@ -2,6 +2,7 @@ package se.lexicon.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -35,5 +36,10 @@ public class AppUser {
         this.password = password;
         this.regDate = regDate;
         this.userDetails = userDetails;
+    }
+    @Transactional
+    public void addBookLoan(BookLoan bookLoan){
+        loans.add(bookLoan);
+        bookLoan.setBorrower(this);
     }
 }

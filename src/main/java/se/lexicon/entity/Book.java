@@ -1,6 +1,7 @@
 package se.lexicon.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import java.util.HashSet;
@@ -31,11 +32,23 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
     }
 
+
     public Book(String isbn, String title, int maxLoanDays, Set<Author> authors) {
         this.isbn = isbn;
         this.title = title;
         this.maxLoanDays = maxLoanDays;
         this.authors = authors;
     }
-
+    @Transactional
+    public void setAuthor(Author author) {
+        authors.add(author);
+        author.getWrittenBooks().add(this);
+       //this.authors = authors;
+       //author.(this);
+}
+@Transactional
+   public void removeAuthor(Author author){
+        authors.remove(author);
+        author.getWrittenBooks().remove(this);
+   }
 }
