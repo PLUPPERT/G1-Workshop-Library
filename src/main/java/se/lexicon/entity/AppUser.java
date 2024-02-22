@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +27,8 @@ public class AppUser {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "details_id")
     private Details userDetails;
+    @OneToMany(mappedBy = "loanId")
+    private Set<BookLoan> loans = new HashSet<>();
 
     public AppUser(String username, String password, LocalDate regDate, Details userDetails) {
         this.username = username;

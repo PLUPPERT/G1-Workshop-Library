@@ -27,7 +27,6 @@ class AppUserDaoTest {
 
     @Test
     void findAppUserByUsername() {
-//        detailsDao.save(details);
         appUserDao.save(user);
 
         int expectedNumOfUsers = 1;
